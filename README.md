@@ -1,11 +1,11 @@
 # PA2: Randomized quickselect vs median-of-medians selection
 
-Theme 2 (Deterministic vs Randomized), median finding. Solo project.
+Theme 2 (Deterministic vs Randomized), median finding.
 
 | Module | Algorithm | Primary author |
 |---|---|---|
-| `src/quickselect/` | Randomized quickselect | [Your name] |
-| `src/mom/` | Median-of-medians (BFPRT) selection | [Your name] |
+| `src/quickselect/` | Randomized quickselect | Ethan Fernandez |
+| `src/mom/` | Median-of-medians (BFPRT) selection | Ethan Fernandez |
 
 ## Build (Linux / WSL)
 
