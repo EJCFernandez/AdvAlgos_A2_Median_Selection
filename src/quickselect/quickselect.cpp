@@ -16,7 +16,10 @@ namespace {
         std::size_t currentLow = lo;
 
         for (std::size_t i = lo; i < hi; ++i) {
-            if (a[i] <= pivot) {
+            // Does a[i] <= pivot but as part of the skeleton that Claude made less() does a comparison
+            // and counts it towards final running stats so that I can easily compare running time and comparison count
+            // between the two algorithms.
+            if (!less(pivot, a[i], stats)) {
                 std::swap(a[currentLow], a[i]);
                 ++currentLow;
             }
@@ -47,9 +50,9 @@ Key quickselect(std::vector<Key>& a, std::size_t k, std::mt19937_64& rng, Stats&
             lo = p + 1;
         }
 
-        return a[lo];
-
     }
+
+    return a[lo];
 }
 
 }  // namespace sel
