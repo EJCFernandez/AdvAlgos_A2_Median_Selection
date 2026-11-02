@@ -5,11 +5,12 @@
 #include <stdexcept>
 #include <utility>
 
+// Algorithm version was selected via personal research specifically helpful was the site https://www.geeksforgeeks.org/dsa/quickselect-algorithm/
+// The Algorithm and the specifics behind this particular implemenation version and lomuto were all then explained to me by Claude.
+
 namespace sel {
 namespace {
 
-    // Algorithm version was selected via research specifically helpful was the site https://www.geeksforgeeks.org/dsa/quickselect-algorithm/
-    // The Algorithm was then explained to me by Claude and the specifics behind this particular implemenation version and lomuto.
     std::size_t lomuto_partition(std::vector<Key>& a, std::size_t lo, std::size_t hi, Stats& stats) {
         const Key pivot = a[hi];
 

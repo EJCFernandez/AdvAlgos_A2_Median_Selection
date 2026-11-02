@@ -16,4 +16,6 @@ coordinator's answer).
 
 | Date | Tool | Used for | Did I verify? How? |
 |---|---|---|---|
-| 27 Oct | Claude | Topic choice help, plan, repo skeleton (CMake, test harness, stubs) | |
+| 27 Oct | Claude | Topic choice help, plan, repo skeleton (CMake, test harness, stubs) | Treated these as drafts which require human validation to confirm correctness. Part by Part I'll be confirming correctness whenever I use something from these areas. |
+| 28 Oct | Claude | Quickselect, partitioning and Lomuto explination | Cross referencing with self research from different sites such as https://www.geeksforgeeks.org/dsa/quickselect-algorithm/ and https://stackoverflow.com/questions/10861388/quickselect-algorithm-simplified-explanation |
+| 28 Oct | Claude | Wrote the n − 1 comparison-count test (Skeleton area) | Temporarily reverting to a[i] <= pivot and confirming it fails basically just confirms that the test is valid by confirming it fails when given something technically incorrect |
