@@ -25,7 +25,11 @@
 //   * every (family, n, rep) input is generated once from a recorded seed and each
 //     algorithm gets its own fresh copy of it;
 //   * input generation, copying and result checking are outside the timed region;
-//   * one discarded warm-up run per series and size (skipped once runs get slow);
+//   * one discarded warm-up/calibration run per series and size, on its OWN input
+//     (never one that is then timed), skipped once runs get slow;
+//   * small n is timed in batches of DISTINCT inputs (never repeated copies of one
+//     input: repeating identical data lets the branch predictor learn the exact
+//     branch pattern of a deterministic algorithm and makes it look ~3x faster);
 //   * algorithm order is rotated per rep so no algorithm always runs first;
 //   * every result is checked against std::nth_element; a mismatch is written as
 //     status=wrong and makes the program exit non-zero.
@@ -150,11 +154,13 @@ Key reference_value(const std::vector<Key>& input, std::size_t k) {
 }
 
 // Fast runs (small n) finish in well under what the clock resolves reliably, so
-// they are timed in batches: `batch` fresh copies, one timer around the whole
-// loop, time divided by batch. The batch size is chosen per series and size from
-// one single-run calibration (which also serves as the warm-up), aiming for about
-// 5 ms per measurement, and is capped so the copies stay under ~200k keys.
-// Slow runs (e.g. Lomuto on duplicates) therefore always get batch = 1.
+// they are timed in batches: one timer around `batch` runs, time divided by batch.
+// Each run in a batch gets a DIFFERENT input from a per-rep pool (see run_grid);
+// every algorithm uses the same pool, taking its first `batch` inputs. The batch
+// size is chosen per series and size from one single-run calibration on a separate
+// input (which also serves as the warm-up), aiming for about 5 ms per measurement,
+// capped so a pool stays under ~200k keys. Slow runs (e.g. Lomuto on duplicates)
+// therefore always get batch = 1.
 std::size_t max_batch_for(std::size_t n) { return n < 10000 ? (200000 + n - 1) / n : 1; }
 
 struct Measurement {
@@ -163,9 +169,11 @@ struct Measurement {
     bool ok;
 };
 
-Measurement measure(const Algo& a, const std::vector<Key>& input, std::size_t k, Key expected,
-                    std::size_t batch, std::uint64_t pivot_seed) {
-    std::vector<std::vector<Key>> work(batch, input);  // copies made OUTSIDE the timer
+// Times `batch` runs, run b on a fresh copy of pool[b]. pool.size() >= batch.
+Measurement measure(const Algo& a, const std::vector<std::vector<Key>>& pool,
+                    const std::vector<Key>& expected, std::size_t k, std::size_t batch,
+                    std::uint64_t pivot_seed) {
+    std::vector<std::vector<Key>> work(pool.begin(), pool.begin() + (std::ptrdiff_t)batch);  // copies OUTSIDE the timer
     std::vector<Key> results(batch);
     std::mt19937_64 rng(pivot_seed);
     sel::Stats st;
@@ -175,7 +183,7 @@ Measurement measure(const Algo& a, const std::vector<Key>& input, std::size_t k,
     const auto t1 = std::chrono::steady_clock::now();
 
     bool ok = true;
-    for (Key r : results) ok = ok && (r == expected);  // checked OUTSIDE the timer
+    for (std::size_t b = 0; b < batch; ++b) ok = ok && (results[b] == expected[b]);  // checked OUTSIDE the timer
     const double ns = (double)std::chrono::duration_cast<std::chrono::nanoseconds>(t1 - t0).count();
     return {ns / (double)batch, (double)st.comparisons / (double)batch, ok};
 }
@@ -242,12 +250,29 @@ void run_grid(const char* exp, const Options& opt, const std::vector<int>& famil
             std::vector<std::size_t> batch(algos.size(), 1);  // fixed per series for all reps of this n
             std::fprintf(stderr, "[%s/%s] %s n=%zu reps=%d\n", exp, kBuild, family_name(fam), n, reps);
 
+            // Calibration / warm-up input: its own seed, never timed.
+            const std::vector<std::vector<Key>> cal_pool = {make_input(fam, n, input_seed(opt.seed, fam, n, 1000000))};
+            const std::vector<Key> cal_expected = {reference_value(cal_pool[0], k)};
+
             std::vector<std::vector<double>> times(algos.size());
             for (int rep = 0; rep < reps; ++rep) {
                 const std::uint64_t in_seed = input_seed(opt.seed, fam, n, rep);
                 const std::uint64_t pv_seed = pivot_seed_for(in_seed);
-                const std::vector<Key> input = make_input(fam, n, in_seed);
-                const Key expected = reference_value(input, k);
+                // Pool of distinct inputs for this rep: input 0 uses in_seed (the seed
+                // recorded in the CSV); input j > 0 uses splitmix(in_seed + j). The pool
+                // is sized for the largest batch any series needs at this n.
+                std::size_t pool_size = 1;
+                if (rep > 0)
+                    for (std::size_t b : batch) pool_size = std::max(pool_size, b);
+                else
+                    pool_size = max_batch_for(n);  // batch sizes are not known until calibration
+                std::vector<std::vector<Key>> pool;
+                std::vector<Key> expected;
+                pool.reserve(pool_size);
+                for (std::size_t j = 0; j < pool_size; ++j) {
+                    pool.push_back(make_input(fam, n, j == 0 ? in_seed : splitmix(in_seed + j)));
+                    expected.push_back(reference_value(pool.back(), k));
+                }
 
                 for (std::size_t j = 0; j < algos.size(); ++j) {
                     const std::size_t ai = (j + (std::size_t)rep) % algos.size();  // rotate order
@@ -260,7 +285,7 @@ void run_grid(const char* exp, const Options& opt, const std::vector<int>& famil
                     // Rep 0: one single-run calibration, discarded (it is also the warm-up),
                     // used to choose this series' batch size. Skipped once the series is slow.
                     if (rep == 0 && (s.last_median_ns < 0 || s.last_median_ns < 2e8)) {
-                        const Measurement cal = measure(a, input, k, expected, 1, pv_seed);
+                        const Measurement cal = measure(a, cal_pool, cal_expected, k, 1, pv_seed);
                         const double target_ns = 5e6;
                         if (cal.ns_per_run < target_ns) {
                             const double want = std::ceil(target_ns / std::max(cal.ns_per_run, 1.0));
@@ -269,7 +294,7 @@ void run_grid(const char* exp, const Options& opt, const std::vector<int>& famil
                         }
                     }
 
-                    const Measurement m = measure(a, input, k, expected, batch[ai], pv_seed);
+                    const Measurement m = measure(a, pool, expected, k, batch[ai], pv_seed);
                     if (!m.ok) {
                         g_any_wrong = true;
                         std::fprintf(stderr, "WRONG RESULT: %s %s n=%zu rep=%d\n", series_label(a).c_str(),
@@ -307,8 +332,11 @@ void run_tail(const Options& opt) {
     const int baseline_runs = opt.quick ? 20 : 200;
     const std::size_t k = n / 2;
     const std::uint64_t in_seed = input_seed(opt.seed, RANDOM, n, 0);
-    const std::vector<Key> input = make_input(RANDOM, n, in_seed);
-    const Key expected = reference_value(input, k);
+    // By design every run uses the SAME input (only the pivot seed varies), so the
+    // spread isolates quickselect's randomness. n is large enough that repeating
+    // it cannot be learned by the branch predictor (its times match the sweep's).
+    const std::vector<std::vector<Key>> pool = {make_input(RANDOM, n, in_seed)};
+    const std::vector<Key> expected = {reference_value(pool[0], k)};
     const std::size_t batch = 1;
 
     struct Job { Algo a; int runs; };
@@ -319,10 +347,10 @@ void run_tail(const Options& opt) {
     };
     for (const Job& job : jobs) {
         std::fprintf(stderr, "[tail/%s] %s n=%zu runs=%d\n", kBuild, series_label(job.a).c_str(), n, job.runs);
-        for (int w = 0; w < 3; ++w) (void)measure(job.a, input, k, expected, batch, splitmix(w));  // warm-up
+        for (int w = 0; w < 3; ++w) (void)measure(job.a, pool, expected, k, batch, splitmix(w));  // warm-up
         for (int i = 0; i < job.runs; ++i) {
             const std::uint64_t pv_seed = splitmix(opt.seed ^ (0x7A11ULL + (std::uint64_t)i));
-            const Measurement m = measure(job.a, input, k, expected, batch, pv_seed);
+            const Measurement m = measure(job.a, pool, expected, k, batch, pv_seed);
             if (!m.ok) g_any_wrong = true;
             csv_row("tail", job.a, RANDOM, n, k, i, in_seed, pv_seed, batch, &m, m.ok ? "ok" : "wrong");
         }
