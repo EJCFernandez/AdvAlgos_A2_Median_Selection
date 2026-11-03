@@ -1,6 +1,6 @@
 #pragma once
 // Deterministic median-of-medians (BFPRT) selection.
-// Primary author: [Your name]
+// Primary author: Ethan Fernandez
 #include "common/select_common.hpp"
 
 namespace sel {

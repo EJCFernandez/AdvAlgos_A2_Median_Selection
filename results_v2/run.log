@@ -1,0 +1,199 @@
+-- Configuring done (0.3s)
+-- Generating done (2.7s)
+-- Build files have been written to: /mnt/c/AdvancedAlgos/Assignments/A2_Median_Selection/build-wsl
+[ 50%] Built target selection_counted
+[ 50%] Built target selection
+[ 58%] Building CXX object CMakeFiles/bench_counted.dir/bench/bench.cpp.o
+[ 75%] Building CXX object CMakeFiles/bench.dir/bench/bench.cpp.o
+[ 83%] Built target test_select
+[100%] Linking CXX executable bench
+[100%] Linking CXX executable bench_counted
+[100%] Built target bench
+[100%] Built target bench_counted
+114400 checks, 0 failures
+=== sweep (timing build) ===
+[sweep/timing] random n=10 reps=15
+[sweep/timing] random n=30 reps=15
+[sweep/timing] random n=100 reps=15
+[sweep/timing] random n=300 reps=15
+[sweep/timing] random n=1000 reps=15
+[sweep/timing] random n=3000 reps=15
+[sweep/timing] random n=10000 reps=15
+[sweep/timing] random n=30000 reps=15
+[sweep/timing] random n=100000 reps=15
+[sweep/timing] random n=300000 reps=9
+[sweep/timing] random n=1000000 reps=9
+[sweep/timing] random n=3000000 reps=5
+[sweep/timing] random n=10000000 reps=5
+[sweep/timing] few_distinct n=10 reps=15
+[sweep/timing] few_distinct n=30 reps=15
+[sweep/timing] few_distinct n=100 reps=15
+[sweep/timing] few_distinct n=300 reps=15
+[sweep/timing] few_distinct n=1000 reps=15
+[sweep/timing] few_distinct n=3000 reps=15
+[sweep/timing] few_distinct n=10000 reps=15
+[sweep/timing] few_distinct n=30000 reps=15
+[sweep/timing] few_distinct n=100000 reps=15
+[sweep/timing] few_distinct n=300000 reps=9
+[sweep/timing] few_distinct n=1000000 reps=9
+[sweep/timing] few_distinct n=3000000 reps=5
+[sweep/timing] few_distinct n=10000000 reps=5
+[sweep/timing] sorted n=10 reps=15
+[sweep/timing] sorted n=30 reps=15
+[sweep/timing] sorted n=100 reps=15
+[sweep/timing] sorted n=300 reps=15
+[sweep/timing] sorted n=1000 reps=15
+[sweep/timing] sorted n=3000 reps=15
+[sweep/timing] sorted n=10000 reps=15
+[sweep/timing] sorted n=30000 reps=15
+[sweep/timing] sorted n=100000 reps=15
+[sweep/timing] sorted n=300000 reps=9
+[sweep/timing] sorted n=1000000 reps=9
+[sweep/timing] sorted n=3000000 reps=5
+[sweep/timing] sorted n=10000000 reps=5
+=== sweep (counted build) ===
+[sweep/counted] random n=10 reps=3
+[sweep/counted] random n=30 reps=3
+[sweep/counted] random n=100 reps=3
+[sweep/counted] random n=300 reps=3
+[sweep/counted] random n=1000 reps=3
+[sweep/counted] random n=3000 reps=3
+[sweep/counted] random n=10000 reps=3
+[sweep/counted] random n=30000 reps=3
+[sweep/counted] random n=100000 reps=3
+[sweep/counted] random n=300000 reps=3
+[sweep/counted] random n=1000000 reps=3
+[sweep/counted] random n=3000000 reps=3
+[sweep/counted] random n=10000000 reps=3
+[sweep/counted] few_distinct n=10 reps=3
+[sweep/counted] few_distinct n=30 reps=3
+[sweep/counted] few_distinct n=100 reps=3
+[sweep/counted] few_distinct n=300 reps=3
+[sweep/counted] few_distinct n=1000 reps=3
+[sweep/counted] few_distinct n=3000 reps=3
+[sweep/counted] few_distinct n=10000 reps=3
+[sweep/counted] few_distinct n=30000 reps=3
+[sweep/counted] few_distinct n=100000 reps=3
+[sweep/counted] few_distinct n=300000 reps=3
+[sweep/counted] few_distinct n=1000000 reps=3
+[sweep/counted] few_distinct n=3000000 reps=3
+[sweep/counted] few_distinct n=10000000 reps=3
+[sweep/counted] sorted n=10 reps=3
+[sweep/counted] sorted n=30 reps=3
+[sweep/counted] sorted n=100 reps=3
+[sweep/counted] sorted n=300 reps=3
+[sweep/counted] sorted n=1000 reps=3
+[sweep/counted] sorted n=3000 reps=3
+[sweep/counted] sorted n=10000 reps=3
+[sweep/counted] sorted n=30000 reps=3
+[sweep/counted] sorted n=100000 reps=3
+[sweep/counted] sorted n=300000 reps=3
+[sweep/counted] sorted n=1000000 reps=3
+[sweep/counted] sorted n=3000000 reps=3
+[sweep/counted] sorted n=10000000 reps=3
+=== groups (timing build) ===
+[groups/timing] random n=1000 reps=15
+[groups/timing] random n=10000 reps=15
+[groups/timing] random n=100000 reps=15
+[groups/timing] random n=1000000 reps=9
+[groups/timing] random n=10000000 reps=5
+=== groups (counted build) ===
+[groups/counted] random n=1000 reps=3
+[groups/counted] random n=10000 reps=3
+[groups/counted] random n=100000 reps=3
+[groups/counted] random n=1000000 reps=3
+[groups/counted] random n=10000000 reps=3
+=== fix (timing build) ===
+[fix/timing] random n=1000 reps=15
+[fix/timing] random n=10000 reps=15
+[fix/timing] random n=100000 reps=15
+[fix/timing] random n=1000000 reps=9
+[fix/timing] random n=10000000 reps=5
+=== fix (counted build) ===
+[fix/counted] random n=1000 reps=3
+[fix/counted] random n=10000 reps=3
+[fix/counted] random n=100000 reps=3
+[fix/counted] random n=1000000 reps=3
+[fix/counted] random n=10000000 reps=3
+=== tail (timing build) ===
+[tail/timing] quickselect/threeway n=1000000 runs=2000
+[tail/timing] mom/threeway/g5 n=1000000 runs=200
+[tail/timing] nth_element/na n=1000000 runs=200
+=== tail (counted build) ===
+[tail/counted] quickselect/threeway n=1000000 runs=2000
+[tail/counted] mom/threeway/g5 n=1000000 runs=200
+[tail/counted] nth_element/na n=1000000 runs=200
+=== dups (timing build) ===
+[dups/timing] few_distinct n=250 reps=3
+[dups/timing] few_distinct n=500 reps=3
+[dups/timing] few_distinct n=1000 reps=3
+[dups/timing] few_distinct n=2000 reps=3
+[dups/timing] few_distinct n=4000 reps=3
+[dups/timing] few_distinct n=8000 reps=3
+[dups/timing] few_distinct n=16000 reps=3
+  capping mom/lomuto/g5 on few_distinct after n=16000 (median 14.04 s)
+[dups/timing] few_distinct n=32000 reps=3
+[dups/timing] few_distinct n=64000 reps=3
+[dups/timing] few_distinct n=128000 reps=3
+[dups/timing] few_distinct n=256000 reps=3
+[dups/timing] few_distinct n=512000 reps=3
+  capping quickselect/lomuto on few_distinct after n=512000 (median 4.72 s)
+[dups/timing] few_distinct n=1024000 reps=3
+[dups/timing] all_equal n=250 reps=3
+[dups/timing] all_equal n=500 reps=3
+[dups/timing] all_equal n=1000 reps=3
+[dups/timing] all_equal n=2000 reps=3
+[dups/timing] all_equal n=4000 reps=3
+  capping mom/lomuto/g5 on all_equal after n=4000 (median 11.82 s)
+[dups/timing] all_equal n=8000 reps=3
+[dups/timing] all_equal n=16000 reps=3
+[dups/timing] all_equal n=32000 reps=3
+[dups/timing] all_equal n=64000 reps=3
+[dups/timing] all_equal n=128000 reps=3
+  capping quickselect/lomuto on all_equal after n=128000 (median 3.53 s)
+[dups/timing] all_equal n=256000 reps=3
+[dups/timing] all_equal n=512000 reps=3
+[dups/timing] all_equal n=1024000 reps=3
+=== dups (counted build) ===
+[dups/counted] few_distinct n=250 reps=3
+[dups/counted] few_distinct n=500 reps=3
+[dups/counted] few_distinct n=1000 reps=3
+[dups/counted] few_distinct n=2000 reps=3
+[dups/counted] few_distinct n=4000 reps=3
+[dups/counted] few_distinct n=8000 reps=3
+[dups/counted] few_distinct n=16000 reps=3
+  capping mom/lomuto/g5 on few_distinct after n=16000 (median 21.76 s)
+[dups/counted] few_distinct n=32000 reps=3
+[dups/counted] few_distinct n=64000 reps=3
+  capping quickselect/lomuto on few_distinct after n=64000 (median 0.12 s)
+[dups/counted] few_distinct n=128000 reps=3
+[dups/counted] few_distinct n=256000 reps=3
+[dups/counted] few_distinct n=512000 reps=3
+[dups/counted] few_distinct n=1024000 reps=3
+[dups/counted] all_equal n=250 reps=3
+[dups/counted] all_equal n=500 reps=3
+[dups/counted] all_equal n=1000 reps=3
+[dups/counted] all_equal n=2000 reps=3
+  capping mom/lomuto/g5 on all_equal after n=2000 (median 0.90 s)
+[dups/counted] all_equal n=4000 reps=3
+[dups/counted] all_equal n=8000 reps=3
+[dups/counted] all_equal n=16000 reps=3
+[dups/counted] all_equal n=32000 reps=3
+[dups/counted] all_equal n=64000 reps=3
+[dups/counted] all_equal n=128000 reps=3
+  capping quickselect/lomuto on all_equal after n=128000 (median 5.45 s)
+[dups/counted] all_equal n=256000 reps=3
+[dups/counted] all_equal n=512000 reps=3
+[dups/counted] all_equal n=1024000 reps=3
+Reading CSVs from /mnt/c/AdvancedAlgos/Assignments/A2_Median_Selection/results
+  wrote /mnt/c/AdvancedAlgos/Assignments/A2_Median_Selection/scripts/../results/figures/fig1_sweep_time.png
+  wrote /mnt/c/AdvancedAlgos/Assignments/A2_Median_Selection/scripts/../results/figures/fig2_sweep_comparisons.png
+  wrote /mnt/c/AdvancedAlgos/Assignments/A2_Median_Selection/scripts/../results/figures/fig3_time_ratio.png
+  wrote /mnt/c/AdvancedAlgos/Assignments/A2_Median_Selection/scripts/../results/tail_summary.txt
+  wrote /mnt/c/AdvancedAlgos/Assignments/A2_Median_Selection/scripts/../results/figures/fig4_tail.png
+  wrote /mnt/c/AdvancedAlgos/Assignments/A2_Median_Selection/scripts/../results/figures/fig5_group_size.png
+  wrote /mnt/c/AdvancedAlgos/Assignments/A2_Median_Selection/scripts/../results/figures/fig6_cost_of_fix.png
+  wrote /mnt/c/AdvancedAlgos/Assignments/A2_Median_Selection/scripts/../results/figures/fig7_duplicates.png
+  wrote /mnt/c/AdvancedAlgos/Assignments/A2_Median_Selection/scripts/../results/dups_slopes.csv  (a local slope that keeps rising with n means faster than any fixed polynomial)
+  wrote /mnt/c/AdvancedAlgos/Assignments/A2_Median_Selection/scripts/../results/summary.csv
+All done. CSVs and env.txt are in results/.
