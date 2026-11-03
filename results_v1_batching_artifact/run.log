@@ -1,0 +1,184 @@
+-- Configuring done (0.2s)
+-- Generating done (2.6s)
+-- Build files have been written to: /mnt/c/AdvancedAlgos/Assignments/A2_Median_Selection/build-wsl
+[ 50%] Built target selection_counted
+[ 50%] Built target selection
+[ 91%] Built target test_select
+[ 91%] Built target bench_counted
+[100%] Built target bench
+114400 checks, 0 failures
+=== sweep (timing build) ===
+[sweep/timing] random n=10 reps=15
+[sweep/timing] random n=30 reps=15
+[sweep/timing] random n=100 reps=15
+[sweep/timing] random n=300 reps=15
+[sweep/timing] random n=1000 reps=15
+[sweep/timing] random n=3000 reps=15
+[sweep/timing] random n=10000 reps=15
+[sweep/timing] random n=30000 reps=15
+[sweep/timing] random n=100000 reps=15
+[sweep/timing] random n=300000 reps=9
+[sweep/timing] random n=1000000 reps=9
+[sweep/timing] random n=3000000 reps=5
+[sweep/timing] random n=10000000 reps=5
+[sweep/timing] few_distinct n=10 reps=15
+[sweep/timing] few_distinct n=30 reps=15
+[sweep/timing] few_distinct n=100 reps=15
+[sweep/timing] few_distinct n=300 reps=15
+[sweep/timing] few_distinct n=1000 reps=15
+[sweep/timing] few_distinct n=3000 reps=15
+[sweep/timing] few_distinct n=10000 reps=15
+[sweep/timing] few_distinct n=30000 reps=15
+[sweep/timing] few_distinct n=100000 reps=15
+[sweep/timing] few_distinct n=300000 reps=9
+[sweep/timing] few_distinct n=1000000 reps=9
+[sweep/timing] few_distinct n=3000000 reps=5
+[sweep/timing] few_distinct n=10000000 reps=5
+[sweep/timing] sorted n=10 reps=15
+[sweep/timing] sorted n=30 reps=15
+[sweep/timing] sorted n=100 reps=15
+[sweep/timing] sorted n=300 reps=15
+[sweep/timing] sorted n=1000 reps=15
+[sweep/timing] sorted n=3000 reps=15
+[sweep/timing] sorted n=10000 reps=15
+[sweep/timing] sorted n=30000 reps=15
+[sweep/timing] sorted n=100000 reps=15
+[sweep/timing] sorted n=300000 reps=9
+[sweep/timing] sorted n=1000000 reps=9
+[sweep/timing] sorted n=3000000 reps=5
+[sweep/timing] sorted n=10000000 reps=5
+=== sweep (counted build) ===
+[sweep/counted] random n=10 reps=3
+[sweep/counted] random n=30 reps=3
+[sweep/counted] random n=100 reps=3
+[sweep/counted] random n=300 reps=3
+[sweep/counted] random n=1000 reps=3
+[sweep/counted] random n=3000 reps=3
+[sweep/counted] random n=10000 reps=3
+[sweep/counted] random n=30000 reps=3
+[sweep/counted] random n=100000 reps=3
+[sweep/counted] random n=300000 reps=3
+[sweep/counted] random n=1000000 reps=3
+[sweep/counted] random n=3000000 reps=3
+[sweep/counted] random n=10000000 reps=3
+[sweep/counted] few_distinct n=10 reps=3
+[sweep/counted] few_distinct n=30 reps=3
+[sweep/counted] few_distinct n=100 reps=3
+[sweep/counted] few_distinct n=300 reps=3
+[sweep/counted] few_distinct n=1000 reps=3
+[sweep/counted] few_distinct n=3000 reps=3
+[sweep/counted] few_distinct n=10000 reps=3
+[sweep/counted] few_distinct n=30000 reps=3
+[sweep/counted] few_distinct n=100000 reps=3
+[sweep/counted] few_distinct n=300000 reps=3
+[sweep/counted] few_distinct n=1000000 reps=3
+[sweep/counted] few_distinct n=3000000 reps=3
+[sweep/counted] few_distinct n=10000000 reps=3
+[sweep/counted] sorted n=10 reps=3
+[sweep/counted] sorted n=30 reps=3
+[sweep/counted] sorted n=100 reps=3
+[sweep/counted] sorted n=300 reps=3
+[sweep/counted] sorted n=1000 reps=3
+[sweep/counted] sorted n=3000 reps=3
+[sweep/counted] sorted n=10000 reps=3
+[sweep/counted] sorted n=30000 reps=3
+[sweep/counted] sorted n=100000 reps=3
+[sweep/counted] sorted n=300000 reps=3
+[sweep/counted] sorted n=1000000 reps=3
+[sweep/counted] sorted n=3000000 reps=3
+[sweep/counted] sorted n=10000000 reps=3
+=== groups (timing build) ===
+[groups/timing] random n=1000 reps=15
+[groups/timing] random n=10000 reps=15
+[groups/timing] random n=100000 reps=15
+[groups/timing] random n=1000000 reps=9
+[groups/timing] random n=10000000 reps=5
+=== groups (counted build) ===
+[groups/counted] random n=1000 reps=3
+[groups/counted] random n=10000 reps=3
+[groups/counted] random n=100000 reps=3
+[groups/counted] random n=1000000 reps=3
+[groups/counted] random n=10000000 reps=3
+=== fix (timing build) ===
+[fix/timing] random n=1000 reps=15
+[fix/timing] random n=10000 reps=15
+[fix/timing] random n=100000 reps=15
+[fix/timing] random n=1000000 reps=9
+[fix/timing] random n=10000000 reps=5
+=== fix (counted build) ===
+[fix/counted] random n=1000 reps=3
+[fix/counted] random n=10000 reps=3
+[fix/counted] random n=100000 reps=3
+[fix/counted] random n=1000000 reps=3
+[fix/counted] random n=10000000 reps=3
+=== tail (timing build) ===
+[tail/timing] quickselect/threeway n=1000000 runs=2000
+[tail/timing] mom/threeway/g5 n=1000000 runs=200
+[tail/timing] nth_element/na n=1000000 runs=200
+=== tail (counted build) ===
+[tail/counted] quickselect/threeway n=1000000 runs=2000
+[tail/counted] mom/threeway/g5 n=1000000 runs=200
+[tail/counted] nth_element/na n=1000000 runs=200
+=== dups (timing build) ===
+[dups/timing] few_distinct n=250 reps=3
+[dups/timing] few_distinct n=500 reps=3
+[dups/timing] few_distinct n=1000 reps=3
+[dups/timing] few_distinct n=2000 reps=3
+[dups/timing] few_distinct n=4000 reps=3
+[dups/timing] few_distinct n=8000 reps=3
+[dups/timing] few_distinct n=16000 reps=3
+  capping mom/lomuto/g5 on few_distinct after n=16000 (median 13.60 s)
+[dups/timing] few_distinct n=32000 reps=3
+[dups/timing] few_distinct n=64000 reps=3
+[dups/timing] few_distinct n=128000 reps=3
+[dups/timing] few_distinct n=256000 reps=3
+[dups/timing] few_distinct n=512000 reps=3
+  capping quickselect/lomuto on few_distinct after n=512000 (median 5.03 s)
+[dups/timing] few_distinct n=1024000 reps=3
+[dups/timing] all_equal n=250 reps=3
+[dups/timing] all_equal n=500 reps=3
+[dups/timing] all_equal n=1000 reps=3
+[dups/timing] all_equal n=2000 reps=3
+  capping mom/lomuto/g5 on all_equal after n=2000 (median 0.68 s)
+[dups/timing] all_equal n=4000 reps=3
+[dups/timing] all_equal n=8000 reps=3
+[dups/timing] all_equal n=16000 reps=3
+[dups/timing] all_equal n=32000 reps=3
+[dups/timing] all_equal n=64000 reps=3
+[dups/timing] all_equal n=128000 reps=3
+  capping quickselect/lomuto on all_equal after n=128000 (median 4.07 s)
+[dups/timing] all_equal n=256000 reps=3
+[dups/timing] all_equal n=512000 reps=3
+[dups/timing] all_equal n=1024000 reps=3
+=== dups (counted build) ===
+[dups/counted] few_distinct n=250 reps=3
+[dups/counted] few_distinct n=500 reps=3
+[dups/counted] few_distinct n=1000 reps=3
+[dups/counted] few_distinct n=2000 reps=3
+[dups/counted] few_distinct n=4000 reps=3
+[dups/counted] few_distinct n=8000 reps=3
+[dups/counted] few_distinct n=16000 reps=3
+  capping mom/lomuto/g5 on few_distinct after n=16000 (median 22.33 s)
+[dups/counted] few_distinct n=32000 reps=3
+[dups/counted] few_distinct n=64000 reps=3
+[dups/counted] few_distinct n=128000 reps=3
+[dups/counted] few_distinct n=256000 reps=3
+[dups/counted] few_distinct n=512000 reps=3
+  capping quickselect/lomuto on few_distinct after n=512000 (median 7.21 s)
+[dups/counted] few_distinct n=1024000 reps=3
+[dups/counted] all_equal n=250 reps=3
+[dups/counted] all_equal n=500 reps=3
+[dups/counted] all_equal n=1000 reps=3
+[dups/counted] all_equal n=2000 reps=3
+  capping mom/lomuto/g5 on all_equal after n=2000 (median 0.86 s)
+[dups/counted] all_equal n=4000 reps=3
+[dups/counted] all_equal n=8000 reps=3
+[dups/counted] all_equal n=16000 reps=3
+[dups/counted] all_equal n=32000 reps=3
+[dups/counted] all_equal n=64000 reps=3
+[dups/counted] all_equal n=128000 reps=3
+  capping quickselect/lomuto on all_equal after n=128000 (median 6.08 s)
+[dups/counted] all_equal n=256000 reps=3
+[dups/counted] all_equal n=512000 reps=3
+[dups/counted] all_equal n=1024000 reps=3
+All done. CSVs and env.txt are in results/.
