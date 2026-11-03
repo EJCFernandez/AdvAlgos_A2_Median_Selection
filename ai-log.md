@@ -23,3 +23,6 @@ coordinator's answer).
 |28 Oct | Claude | Investigated slow test runs from median-of-medians and explained why it was happening| Matched my own observation of debug with info being presented and implementing the three-way fix made it work|
 |28 Oct | Claude | Helped implement the three-way partitioning and updated the tests. I typed the algorithm changes myself| Test results all checked out with the new code 114,400 checks and 0 failures |
 |28 Oct | Claude | Further project notes and planning| Read through and verified with my own knowledge of the project|
+| 3 Nov | Claude | Drafted Section 2.1–2.3 (comparison tables, constant factors, input sensitivity) | Read and edited the whole draft myself.|
+| 3 Nov | Claude | Wrote eight prediction questions and rewrote my answers in report style | All predictions are my own answers; I checked the rewording kept my meaning and edited it where needed |
+| 3 Nov | Claude | Verified APA 7 in-text citations and a reference list | Claude checked each one by web search (titles, pages, DOIs). |
