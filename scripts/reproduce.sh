@@ -32,17 +32,17 @@ mkdir -p results
   echo; grep -E "CMAKE_BUILD_TYPE|CMAKE_CXX_COMPILER:|CMAKE_CXX_FLAGS_RELEASE" "$BUILD/CMakeCache.txt" || true
 } > results/env.txt 2>&1
 
-# Timing build first (times), then counted build (comparison counts, fewer reps).
-# The tail experiment ignores --reps: it always uses every pivot seed.
+# Timing build first (times), then counted build (comparison counts). Quickselect's
+# comparison count varies a lot from run to run, so the counted build uses 50 reps
+# for sweep/groups/fix (counting is cheap); plots show mean comparisons. The tail
+# experiment always uses every pivot seed; dups keeps its fixed 3 reps (Lomuto is slow).
 for mode in sweep groups fix tail dups; do
   echo "=== $mode (timing build) ==="
   $RUN_PREFIX "./$BUILD/bench" "$mode" $QUICK --out "results/${mode}_time.csv"
   echo "=== $mode (counted build) ==="
-  if [[ -n "$QUICK" ]]; then
-    $RUN_PREFIX "./$BUILD/bench_counted" "$mode" $QUICK --out "results/${mode}_count.csv"
-  else
-    $RUN_PREFIX "./$BUILD/bench_counted" "$mode" --reps 3 --out "results/${mode}_count.csv"
-  fi
+  COUNT_REPS=""
+  if [[ -z "$QUICK" && "$mode" =~ ^(sweep|groups|fix)$ ]]; then COUNT_REPS="--reps 50"; fi
+  $RUN_PREFIX "./$BUILD/bench_counted" "$mode" $QUICK $COUNT_REPS --out "results/${mode}_count.csv"
 done
 
 if [[ -s scripts/plot.py ]]; then

@@ -20,8 +20,11 @@ Writes  results/figures/fig1_sweep_time.png        time per element vs n, per in
         results/tail_summary.txt  percentiles and ratios for the tail experiment
         results/dups_slopes.csv   local log-log slopes for the duplicates experiment
 
-Every plotted point is the MEDIAN over repetitions; error bars span the 25th-75th
-percentiles (interquartile range). Rows with status other than "ok" are excluded.
+Times: each point is the MEDIAN over repetitions (robust to machine noise); error
+bars span the 25th-75th percentiles. Comparison counts: each point is the MEAN over
+repetitions, because Section 2's formulas are expected values and quickselect's
+per-run count varies widely; error bars are +/- one standard error of the mean.
+Rows with status other than "ok" are excluded.
 """
 import csv
 import math
@@ -88,6 +91,16 @@ def med_iqr(vals):
     return float(np.median(a)), float(np.percentile(a, 25)), float(np.percentile(a, 75))
 
 
+def mean_se(vals):
+    a = np.asarray(vals, dtype=float)
+    se = float(a.std(ddof=1) / math.sqrt(len(a))) if len(a) > 1 else 0.0
+    return float(a.mean()), se
+
+
+def centre(vals, stat):
+    return med_iqr(vals)[0] if stat == "median" else mean_se(vals)[0]
+
+
 def label(key, with_scheme=True):
     a, s, g = key
     text = ALGO_NAME[a]
@@ -121,18 +134,24 @@ def save(fig, name):
     print(f"  wrote {path}")
 
 
-def series_panel(ax, d, family, keys, per_element, colour_by_g=False, with_scheme=True):
+def series_panel(ax, d, family, keys, per_element, colour_by_g=False, with_scheme=True, stat="median"):
     for key in keys:
         ns = sizes_for(d, key, family)
         if not ns:
             continue
         med, lo, hi = [], [], []
         for n in ns:
-            m, p25, p75 = med_iqr(d[(key, family, n)])
             s = n if per_element else 1.0
-            med.append(m / s)
-            lo.append((m - p25) / s)
-            hi.append((p75 - m) / s)
+            if stat == "median":
+                m, p25, p75 = med_iqr(d[(key, family, n)])
+                med.append(m / s)
+                lo.append((m - p25) / s)
+                hi.append((p75 - m) / s)
+            else:
+                m, se = mean_se(d[(key, family, n)])
+                med.append(m / s)
+                lo.append(se / s)
+                hi.append(se / s)
         st = style(key)
         if colour_by_g:
             st["color"] = G_COLOUR.get(key[2], "black")
@@ -157,7 +176,10 @@ def add_summary(experiment, t, c):
                        p75_time_ns=f"{p75:.1f}", median_ns_per_element=f"{m / n:.4f}")
         if (key, fam, n) in c:
             mc = float(np.median(c[(key, fam, n)]))
-            row.update(median_comparisons=f"{mc:.1f}", comparisons_per_element=f"{mc / n:.4f}")
+            mean_c, se_c = mean_se(c[(key, fam, n)])
+            row.update(count_reps=len(c[(key, fam, n)]), median_comparisons=f"{mc:.1f}",
+                       mean_comparisons=f"{mean_c:.1f}", se_comparisons=f"{se_c:.1f}",
+                       mean_comparisons_per_element=f"{mean_c / n:.4f}")
         summary_rows.append(row)
 
 
@@ -168,20 +190,20 @@ def sweep():
     add_summary("sweep", t, c)
     keys = [QS3, MOM3, NTH]
 
-    for data, name, ylabel in ((t, "fig1_sweep_time.png", "Median time per element (ns)"),
-                               (c, "fig2_sweep_comparisons.png", "Comparisons per element")):
+    for data, name, ylabel, stat in ((t, "fig1_sweep_time.png", "Median time per element (ns)", "median"),
+                                     (c, "fig2_sweep_comparisons.png", "Mean comparisons per element", "mean")):
         fams = families_in(data)
         if not fams:
             continue
         fig, axes = plt.subplots(1, len(fams), figsize=(4.6 * len(fams), 4), sharey=True, squeeze=False)
         for ax, fam in zip(axes[0], fams):
-            series_panel(ax, data, fam, keys, per_element=True, with_scheme=False)
+            series_panel(ax, data, fam, keys, per_element=True, with_scheme=False, stat=stat)
             ax.set_title(FAMILY_NAME.get(fam, fam))
             ax.set_xlabel("n")
         axes[0][0].set_ylabel(ylabel)
         axes[0][0].legend(fontsize=8)
-        fig.suptitle("Size sweep, k = n/2, three-way partitioning" if "time" in name
-                     else "Size sweep: comparisons (counted build), k = n/2")
+        fig.suptitle("Size sweep, k = n/2, three-way partitioning (median, IQR bars)" if "time" in name
+                     else "Size sweep: comparisons (counted build), k = n/2 (mean, standard-error bars)")
         save(fig, name)
 
     # Figure 3: time ratios relative to quickselect, per family.
@@ -301,9 +323,9 @@ def groups():
     add_summary("groups", t, c)
     keys = [("mom", "threeway", g) for g in ("3", "5", "7")]
     fig, axes = plt.subplots(1, 2, figsize=(10, 4))
-    for ax, data, ylabel in ((axes[0], t, "Median time per element (ns)"),
-                             (axes[1], c, "Comparisons per element")):
-        series_panel(ax, data, "random", keys, per_element=True, colour_by_g=True, with_scheme=False)
+    for ax, data, ylabel, stat in ((axes[0], t, "Median time per element (ns)", "median"),
+                                   (axes[1], c, "Mean comparisons per element", "mean")):
+        series_panel(ax, data, "random", keys, per_element=True, colour_by_g=True, with_scheme=False, stat=stat)
         ax.set_xlabel("n")
         ax.set_ylabel(ylabel)
         ax.legend(fontsize=8)
@@ -317,12 +339,13 @@ def fix():
     c = collect(load("fix", "count"), "comparisons")
     add_summary("fix", t, c)
     fig, axes = plt.subplots(1, 2, figsize=(10, 4), sharey=True)
-    for ax, data, title in ((axes[0], t, "Time"), (axes[1], c, "Comparisons")):
+    for ax, data, title, stat in ((axes[0], t, "Time (ratio of medians)", "median"),
+                                  (axes[1], c, "Comparisons (ratio of means)", "mean")):
         for three, lom in ((QS3, QSL), (MOM3, MOML)):
             ns = [n for n in sizes_for(data, three, "random") if (lom, "random", n) in data]
             if not ns:
                 continue
-            r = [med_iqr(data[(three, "random", n)])[0] / med_iqr(data[(lom, "random", n)])[0] for n in ns]
+            r = [centre(data[(three, "random", n)], stat) / centre(data[(lom, "random", n)], stat) for n in ns]
             ax.plot(ns, r, marker="o", ms=3, color=ALGO_COLOUR[three[0]], label=label(three, False))
         ax.axhline(1.0, color="black", lw=0.8)
         ax.set_xscale("log")
@@ -330,7 +353,7 @@ def fix():
         ax.set_title(f"{title}: three-way / Lomuto")
         ax.grid(True, which="both", alpha=0.3)
         ax.legend(fontsize=8)
-    axes[0].set_ylabel("Ratio of medians")
+    axes[0].set_ylabel("Ratio")
     fig.suptitle("Cost of the fix on random input (values above 1 mean three-way costs more)")
     save(fig, "fig6_cost_of_fix.png")
 
@@ -352,13 +375,13 @@ def dups():
     fig, axes = plt.subplots(len(fams), 2, figsize=(11, 4.2 * len(fams)), squeeze=False)
     for i, fam in enumerate(fams):
         for j, (data, ylabel, metric) in enumerate(((t, "Median time (ns)", "time"),
-                                                    (c, "Comparisons", "comparisons"))):
+                                                    (c, "Mean comparisons", "comparisons"))):
             ax = axes[i][j]
             for key in keys:
                 ns = sizes_for(data, key, fam)
                 if not ns:
                     continue
-                med = [med_iqr(data[(key, fam, n)])[0] for n in ns]
+                med = [centre(data[(key, fam, n)], "median" if metric == "time" else "mean") for n in ns]
                 lab = label(key)
                 if metric == "time" and capped_t.get((key, fam)):
                     lab += f" (capped above n={max(ns)})"
@@ -370,7 +393,8 @@ def dups():
                                            "local_slope": f"{math.log(v2 / v1) / math.log(n2 / n1):.3f}"})
             # Reference slopes, anchored below the lowest series at the smallest size so
             # they never sit on top of a data line.
-            firsts = [(sizes_for(data, k, fam)[0], med_iqr(data[(k, fam, sizes_for(data, k, fam)[0])])[0])
+            firsts = [(sizes_for(data, k, fam)[0],
+                       centre(data[(k, fam, sizes_for(data, k, fam)[0])], "median" if metric == "time" else "mean"))
                       for k in keys if sizes_for(data, k, fam)]
             if firsts:
                 n0 = min(n for n, _ in firsts)
@@ -403,7 +427,8 @@ def main():
         step()
     path = os.path.join(RES, "summary.csv")
     fields = ["experiment", "algorithm", "scheme", "g", "family", "n", "reps", "median_time_ns", "p25_time_ns",
-              "p75_time_ns", "median_ns_per_element", "median_comparisons", "comparisons_per_element"]
+              "p75_time_ns", "median_ns_per_element", "count_reps", "median_comparisons", "mean_comparisons",
+              "se_comparisons", "mean_comparisons_per_element"]
     with open(path, "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=fields, lineterminator="\n")
         w.writeheader()
