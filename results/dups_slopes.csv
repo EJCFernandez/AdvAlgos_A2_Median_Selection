@@ -1,0 +1,155 @@
+family,metric,series,n_from,n_to,local_slope
+few_distinct,time,"Quickselect, Lomuto",250,500,1.216
+few_distinct,time,"Quickselect, Lomuto",500,1000,1.276
+few_distinct,time,"Quickselect, Lomuto",1000,2000,1.531
+few_distinct,time,"Quickselect, Lomuto",2000,4000,1.553
+few_distinct,time,"Quickselect, Lomuto",4000,8000,1.897
+few_distinct,time,"Quickselect, Lomuto",8000,16000,2.804
+few_distinct,time,"Quickselect, Lomuto",16000,32000,-2.408
+few_distinct,time,"Quickselect, Lomuto",32000,64000,6.254
+few_distinct,time,"Quickselect, Lomuto",64000,128000,-3.447
+few_distinct,time,"Quickselect, Lomuto",128000,256000,1.093
+few_distinct,time,"Quickselect, Lomuto",256000,512000,8.370
+few_distinct,time,"Quickselect, three-way",250,500,0.876
+few_distinct,time,"Quickselect, three-way",500,1000,1.079
+few_distinct,time,"Quickselect, three-way",1000,2000,0.821
+few_distinct,time,"Quickselect, three-way",2000,4000,1.137
+few_distinct,time,"Quickselect, three-way",4000,8000,0.800
+few_distinct,time,"Quickselect, three-way",8000,16000,1.077
+few_distinct,time,"Quickselect, three-way",16000,32000,0.958
+few_distinct,time,"Quickselect, three-way",32000,64000,1.058
+few_distinct,time,"Quickselect, three-way",64000,128000,1.286
+few_distinct,time,"Quickselect, three-way",128000,256000,0.243
+few_distinct,time,"Quickselect, three-way",256000,512000,1.530
+few_distinct,time,"Quickselect, three-way",512000,1024000,0.855
+few_distinct,time,"Median-of-medians (g=5), Lomuto",250,500,1.766
+few_distinct,time,"Median-of-medians (g=5), Lomuto",500,1000,2.396
+few_distinct,time,"Median-of-medians (g=5), Lomuto",1000,2000,2.456
+few_distinct,time,"Median-of-medians (g=5), Lomuto",2000,4000,5.000
+few_distinct,time,"Median-of-medians (g=5), Lomuto",4000,8000,-0.570
+few_distinct,time,"Median-of-medians (g=5), Lomuto",8000,16000,8.804
+few_distinct,time,"Median-of-medians (g=5), three-way",250,500,0.931
+few_distinct,time,"Median-of-medians (g=5), three-way",500,1000,0.894
+few_distinct,time,"Median-of-medians (g=5), three-way",1000,2000,1.017
+few_distinct,time,"Median-of-medians (g=5), three-way",2000,4000,0.948
+few_distinct,time,"Median-of-medians (g=5), three-way",4000,8000,0.926
+few_distinct,time,"Median-of-medians (g=5), three-way",8000,16000,0.819
+few_distinct,time,"Median-of-medians (g=5), three-way",16000,32000,1.078
+few_distinct,time,"Median-of-medians (g=5), three-way",32000,64000,1.078
+few_distinct,time,"Median-of-medians (g=5), three-way",64000,128000,1.106
+few_distinct,time,"Median-of-medians (g=5), three-way",128000,256000,0.831
+few_distinct,time,"Median-of-medians (g=5), three-way",256000,512000,0.975
+few_distinct,time,"Median-of-medians (g=5), three-way",512000,1024000,0.992
+few_distinct,comparisons,"Quickselect, Lomuto",250,500,1.691
+few_distinct,comparisons,"Quickselect, Lomuto",500,1000,1.735
+few_distinct,comparisons,"Quickselect, Lomuto",1000,2000,2.000
+few_distinct,comparisons,"Quickselect, Lomuto",2000,4000,1.765
+few_distinct,comparisons,"Quickselect, Lomuto",4000,8000,2.015
+few_distinct,comparisons,"Quickselect, Lomuto",8000,16000,2.892
+few_distinct,comparisons,"Quickselect, Lomuto",16000,32000,0.496
+few_distinct,comparisons,"Quickselect, Lomuto",32000,64000,2.888
+few_distinct,comparisons,"Quickselect, Lomuto",64000,128000,1.026
+few_distinct,comparisons,"Quickselect, Lomuto",128000,256000,-3.313
+few_distinct,comparisons,"Quickselect, Lomuto",256000,512000,8.280
+few_distinct,comparisons,"Quickselect, three-way",250,500,0.996
+few_distinct,comparisons,"Quickselect, three-way",500,1000,0.997
+few_distinct,comparisons,"Quickselect, three-way",1000,2000,0.996
+few_distinct,comparisons,"Quickselect, three-way",2000,4000,1.013
+few_distinct,comparisons,"Quickselect, three-way",4000,8000,0.996
+few_distinct,comparisons,"Quickselect, three-way",8000,16000,1.077
+few_distinct,comparisons,"Quickselect, three-way",16000,32000,0.871
+few_distinct,comparisons,"Quickselect, three-way",32000,64000,1.000
+few_distinct,comparisons,"Quickselect, three-way",64000,128000,1.346
+few_distinct,comparisons,"Quickselect, three-way",128000,256000,0.132
+few_distinct,comparisons,"Quickselect, three-way",256000,512000,1.606
+few_distinct,comparisons,"Quickselect, three-way",512000,1024000,0.678
+few_distinct,comparisons,"Median-of-medians (g=5), Lomuto",250,500,2.274
+few_distinct,comparisons,"Median-of-medians (g=5), Lomuto",500,1000,2.715
+few_distinct,comparisons,"Median-of-medians (g=5), Lomuto",1000,2000,3.157
+few_distinct,comparisons,"Median-of-medians (g=5), Lomuto",2000,4000,3.901
+few_distinct,comparisons,"Median-of-medians (g=5), Lomuto",4000,8000,3.064
+few_distinct,comparisons,"Median-of-medians (g=5), Lomuto",8000,16000,5.781
+few_distinct,comparisons,"Median-of-medians (g=5), three-way",250,500,1.010
+few_distinct,comparisons,"Median-of-medians (g=5), three-way",500,1000,1.016
+few_distinct,comparisons,"Median-of-medians (g=5), three-way",1000,2000,0.991
+few_distinct,comparisons,"Median-of-medians (g=5), three-way",2000,4000,0.980
+few_distinct,comparisons,"Median-of-medians (g=5), three-way",4000,8000,1.024
+few_distinct,comparisons,"Median-of-medians (g=5), three-way",8000,16000,0.792
+few_distinct,comparisons,"Median-of-medians (g=5), three-way",16000,32000,1.027
+few_distinct,comparisons,"Median-of-medians (g=5), three-way",32000,64000,1.300
+few_distinct,comparisons,"Median-of-medians (g=5), three-way",64000,128000,0.701
+few_distinct,comparisons,"Median-of-medians (g=5), three-way",128000,256000,1.043
+few_distinct,comparisons,"Median-of-medians (g=5), three-way",256000,512000,1.000
+few_distinct,comparisons,"Median-of-medians (g=5), three-way",512000,1024000,1.016
+all_equal,time,"Quickselect, Lomuto",250,500,1.955
+all_equal,time,"Quickselect, Lomuto",500,1000,1.744
+all_equal,time,"Quickselect, Lomuto",1000,2000,2.014
+all_equal,time,"Quickselect, Lomuto",2000,4000,1.948
+all_equal,time,"Quickselect, Lomuto",4000,8000,1.983
+all_equal,time,"Quickselect, Lomuto",8000,16000,1.997
+all_equal,time,"Quickselect, Lomuto",16000,32000,1.970
+all_equal,time,"Quickselect, Lomuto",32000,64000,2.024
+all_equal,time,"Quickselect, Lomuto",64000,128000,1.946
+all_equal,time,"Quickselect, three-way",250,500,1.082
+all_equal,time,"Quickselect, three-way",500,1000,0.758
+all_equal,time,"Quickselect, three-way",1000,2000,1.015
+all_equal,time,"Quickselect, three-way",2000,4000,0.961
+all_equal,time,"Quickselect, three-way",4000,8000,1.056
+all_equal,time,"Quickselect, three-way",8000,16000,0.927
+all_equal,time,"Quickselect, three-way",16000,32000,1.015
+all_equal,time,"Quickselect, three-way",32000,64000,0.945
+all_equal,time,"Quickselect, three-way",64000,128000,0.862
+all_equal,time,"Quickselect, three-way",128000,256000,1.226
+all_equal,time,"Quickselect, three-way",256000,512000,1.171
+all_equal,time,"Quickselect, three-way",512000,1024000,1.151
+all_equal,time,"Median-of-medians (g=5), Lomuto",250,500,3.668
+all_equal,time,"Median-of-medians (g=5), Lomuto",500,1000,3.262
+all_equal,time,"Median-of-medians (g=5), Lomuto",1000,2000,4.149
+all_equal,time,"Median-of-medians (g=5), three-way",250,500,1.110
+all_equal,time,"Median-of-medians (g=5), three-way",500,1000,0.838
+all_equal,time,"Median-of-medians (g=5), three-way",1000,2000,0.730
+all_equal,time,"Median-of-medians (g=5), three-way",2000,4000,1.225
+all_equal,time,"Median-of-medians (g=5), three-way",4000,8000,1.135
+all_equal,time,"Median-of-medians (g=5), three-way",8000,16000,0.783
+all_equal,time,"Median-of-medians (g=5), three-way",16000,32000,1.077
+all_equal,time,"Median-of-medians (g=5), three-way",32000,64000,0.948
+all_equal,time,"Median-of-medians (g=5), three-way",64000,128000,0.905
+all_equal,time,"Median-of-medians (g=5), three-way",128000,256000,1.190
+all_equal,time,"Median-of-medians (g=5), three-way",256000,512000,1.145
+all_equal,time,"Median-of-medians (g=5), three-way",512000,1024000,1.196
+all_equal,comparisons,"Quickselect, Lomuto",250,500,2.002
+all_equal,comparisons,"Quickselect, Lomuto",500,1000,2.001
+all_equal,comparisons,"Quickselect, Lomuto",1000,2000,2.000
+all_equal,comparisons,"Quickselect, Lomuto",2000,4000,2.000
+all_equal,comparisons,"Quickselect, Lomuto",4000,8000,2.000
+all_equal,comparisons,"Quickselect, Lomuto",8000,16000,2.000
+all_equal,comparisons,"Quickselect, Lomuto",16000,32000,2.000
+all_equal,comparisons,"Quickselect, Lomuto",32000,64000,2.000
+all_equal,comparisons,"Quickselect, Lomuto",64000,128000,2.000
+all_equal,comparisons,"Quickselect, three-way",250,500,1.000
+all_equal,comparisons,"Quickselect, three-way",500,1000,1.000
+all_equal,comparisons,"Quickselect, three-way",1000,2000,1.000
+all_equal,comparisons,"Quickselect, three-way",2000,4000,1.000
+all_equal,comparisons,"Quickselect, three-way",4000,8000,1.000
+all_equal,comparisons,"Quickselect, three-way",8000,16000,1.000
+all_equal,comparisons,"Quickselect, three-way",16000,32000,1.000
+all_equal,comparisons,"Quickselect, three-way",32000,64000,1.000
+all_equal,comparisons,"Quickselect, three-way",64000,128000,1.000
+all_equal,comparisons,"Quickselect, three-way",128000,256000,1.000
+all_equal,comparisons,"Quickselect, three-way",256000,512000,1.000
+all_equal,comparisons,"Quickselect, three-way",512000,1024000,1.000
+all_equal,comparisons,"Median-of-medians (g=5), Lomuto",250,500,3.373
+all_equal,comparisons,"Median-of-medians (g=5), Lomuto",500,1000,3.555
+all_equal,comparisons,"Median-of-medians (g=5), Lomuto",1000,2000,4.134
+all_equal,comparisons,"Median-of-medians (g=5), three-way",250,500,1.001
+all_equal,comparisons,"Median-of-medians (g=5), three-way",500,1000,1.007
+all_equal,comparisons,"Median-of-medians (g=5), three-way",1000,2000,1.000
+all_equal,comparisons,"Median-of-medians (g=5), three-way",2000,4000,1.002
+all_equal,comparisons,"Median-of-medians (g=5), three-way",4000,8000,1.000
+all_equal,comparisons,"Median-of-medians (g=5), three-way",8000,16000,1.000
+all_equal,comparisons,"Median-of-medians (g=5), three-way",16000,32000,1.000
+all_equal,comparisons,"Median-of-medians (g=5), three-way",32000,64000,1.000
+all_equal,comparisons,"Median-of-medians (g=5), three-way",64000,128000,1.000
+all_equal,comparisons,"Median-of-medians (g=5), three-way",128000,256000,1.000
+all_equal,comparisons,"Median-of-medians (g=5), three-way",256000,512000,1.000
+all_equal,comparisons,"Median-of-medians (g=5), three-way",512000,1024000,1.000

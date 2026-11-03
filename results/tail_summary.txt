@@ -1,0 +1,27 @@
+Tail experiment: one fixed random input, n = 1000000, k = n/2
+
+time, Quickselect, three-way: runs=2000
+  median=15.7384 ms mean=15.7030 ms min=6.3736 ms max=43.0830 ms
+  p90/median=1.195 p99/median=1.665 p99.9/median=2.558 max/median=2.737 skewness=1.813
+  note: with 2000 runs, p99.9 rests on about 2 run(s) above it, so treat it as indicative only
+time, Median-of-medians (g=5), three-way: runs=200
+  median=44.9848 ms mean=45.9814 ms min=43.2195 ms max=74.5297 ms
+  p90/median=1.064 p99/median=1.349 p99.9/median=1.642 max/median=1.657 skewness=5.188
+  note: with 200 runs, p99.9 rests on about 1 run(s) above it, so treat it as indicative only
+time, std::nth_element: runs=200
+  median=10.8436 ms mean=11.2264 ms min=10.3665 ms max=31.6261 ms
+  p90/median=1.110 p99/median=1.447 p99.9/median=2.644 max/median=2.917 skewness=9.243
+  note: with 200 runs, p99.9 rests on about 1 run(s) above it, so treat it as indicative only
+
+comparisons per element, Quickselect, three-way: runs=2000
+  median=4.8775 mean=5.0330 min=2.0938 max=11.8119
+  p90/median=1.448 p99/median=1.890 p99.9/median=2.265 max/median=2.422 skewness=0.704
+  note: with 2000 runs, p99.9 rests on about 2 run(s) above it, so treat it as indicative only
+comparisons per element, Median-of-medians (g=5), three-way: runs=200
+  median=10.3069 mean=10.3069 min=10.3069 max=10.3069
+  p90/median=1.000 p99/median=1.000 p99.9/median=1.000 max/median=1.000 skewness=n/a (every run identical)
+  note: with 200 runs, p99.9 rests on about 1 run(s) above it, so treat it as indicative only
+comparisons per element, std::nth_element: runs=200
+  median=2.3977 mean=2.3977 min=2.3977 max=2.3977
+  p90/median=1.000 p99/median=1.000 p99.9/median=1.000 max/median=1.000 skewness=n/a (every run identical)
+  note: with 200 runs, p99.9 rests on about 1 run(s) above it, so treat it as indicative only
