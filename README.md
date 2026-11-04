@@ -9,7 +9,7 @@ Programming Assignment 2 for Advanced Algorithms (solo project), Theme 2: Determ
 
 ## Deliverables
 
-- **Report:** [`report/PA2_Report.pdf`](report/PA2_Report.pdf), with the Word source alongside it
+- **Report:** [`report/AdvAlgos_A2_Report_Final.pdf`](report/AdvAlgos_A2_Report_Final.pdf), with the Word source alongside it
 - **Reflections:** [`report/Reflection_Quickselect.pdf`](report/Reflection_Quickselect.pdf) and [`report/Reflection_MedianOfMedians.pdf`](report/Reflection_MedianOfMedians.pdf)
 - **Video (unlisted):** https://youtu.be/YML36Mb1mdU
 - **AI use log:** [`ai-log.md`](ai-log.md)

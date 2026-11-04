@@ -39,3 +39,5 @@ coordinator's answer).
 | 4 Nov | Claude | Drafted Section 6 | Proof read it in its entirety and edited and added anything I saw fit |
 | 4 Nov | Claude | Drafted the Video script by working in collaboration with me and going back and forth on versions | Proof read each one in its entirety and edited and added anything I saw fit and then went back and forth with Claude until I was happy |
 | 4 Nov | Claude | Drafted the Slides in Powerpoint based on the script | Looked through each slide and made sure they looked nice and made sense before doing any recording |
+| 4 Nov | Claude | Create an updated ReadMe | Proof read and added links where necessary |
+| 4 Nov | Claude | Help me write Section 8 by using the ai-log and by going back and forth on questions regarding my own personal experiences | Proof read and edited the resulting text |
