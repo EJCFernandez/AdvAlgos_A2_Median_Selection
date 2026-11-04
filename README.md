@@ -9,7 +9,7 @@ Programming Assignment 2 for Advanced Algorithms (solo project), Theme 2: Determ
 
 ## Deliverables
 
-- **Report:** [`report/AdvAlgos_A2_Report_Final.pdf`](report/AdvAlgos_A2_Report_Final.pdf), with the Word source alongside it
+- **Report:** [`report/AdvAlgos_A2_Report_Final.pdf`](report/AdvAlgos_A2_Report_Final.pdf)
 - **Reflections:** [`report/Reflection_Quickselect.pdf`](report/Reflection_Quickselect.pdf) and [`report/Reflection_MedianOfMedians.pdf`](report/Reflection_MedianOfMedians.pdf)
 - **Video (unlisted):** https://youtu.be/YML36Mb1mdU
 - **AI use log:** [`ai-log.md`](ai-log.md)
@@ -26,7 +26,7 @@ scripts/reproduce.sh             one command to build, test, run every experimen
 scripts/plot.py                  figures and summary tables from the CSVs
 results/                         the final results used in the report
 results_v1_batching_artifact/    an earlier, flawed run kept as evidence (see below)
-report/                          report and reflections (PDF and Word)
+report/                          report and reflections (PDF)
 ai-log.md                        record of AI use
 ```
 
